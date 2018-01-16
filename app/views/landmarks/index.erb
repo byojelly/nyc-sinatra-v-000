@@ -1,0 +1,9 @@
+    <h1>Landmarks INDEX: Shows all Landmarks</h1>
+
+    <ul>
+          <%@landmarks.each do |l|%>
+              <li><%=l.name%>
+                <ul>Completed: <%=l.year_completed%></ul>
+              </li>
+          <%end%>
+    </ul>

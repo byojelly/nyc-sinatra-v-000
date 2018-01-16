@@ -1,0 +1,44 @@
+<h1>Figure Edit Page</h1>
+<h2>Figure Name: <%=@figure.name%></h2>
+
+<form action="/figures/<%= @figure.id %>" method="POST">
+      <input type="hidden" name="_method" value="PATCH">
+
+      <label><b>Change Figure Name:</b> </label>
+            <li><input type="text" name="figure[name]" id="figure_name" value="">
+            </li>
+      <br></br>
+      <label><b>Edit Titles:(if checked means currently associated)</b>  </label>
+          <br></br>
+          <% Title.all.each do |t|%>
+                <label for=""> <%=t.name%></label>
+
+                  <input type="checkbox" name="figure[title_ids][]"  value="<%=t.id%>" placeholder="Title Ids" <%='checked' if @figure.titles.include?(t)%>>
+          <%end%>
+
+        <br></br>
+
+            <label for="">Add A New Title </label>
+            <input type="text" name="title[name]" id="new_title" value="">
+
+        <br></br>
+        <label><b>Edit Landmarks: (if checked means currently associated)</b>  </label>
+            <br></br>
+            <% Landmark.all.each do |l|%>
+                  <label for=""> <%=l.name%></label>
+
+                    <input type="checkbox" name="figure[landmark_ids][]"  value="<%=l.id%>" placeholder="Landmark Ids" <%='checked' if @figure.landmarks.include?(l)%>>
+
+            <%end%>
+
+          <br></br>
+                  <label for="">Add A New Landmark </label>
+                  <li>Name:
+                      <input type="text" name="landmark[name]" id="new_landmark" value="">
+                  </li>
+                  <li>Year Completed
+                      <input type="text" name="landmark[year_completed]" id="year_completed" value="">
+                  </li>
+          <br></br>
+<input type="submit" value="Edit Figure">
+</form>

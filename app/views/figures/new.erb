@@ -1,0 +1,38 @@
+<h1>Create a new figure!</h1>
+<form action="/figures" method="POST">
+
+        <b><label>Input Figure Name:</label></b>
+        <input type="text" name="figure[name]" id="figure_name" placeholder="Type Here">
+        <p>Classify a landmark:</p>
+        <ul>
+              <li>New Landmark
+                    <ul>
+                        <label>Name: </label><input type="text" name="landmark[name]" id="new_landmark" placeholder="Type Here">
+                    </ul>
+                    <ul>
+                        <label>Year: </label><input type="text" name="landmark[year_completed]" id="landmark_year_completed" placeholder="Type Here">
+                    </ul>
+              </li>
+              <li>
+                    <p>In addition, you may also choose existing landmarks:</p>
+                    <%@landmarks.each do |landmark|%>
+                          <input type="checkbox" name="figure[landmark_ids][]" value="<%=landmark.id%>" id="landmark_<%=landmark.id%>"><%=landmark.name%></input>
+                    <%end%>
+                    <br></br>
+            </li>
+        </ul>
+        <p>Classify a Title:</p>
+        <ul>
+              <li>
+                    <label>New Title:  </label><input type="text" name="title[name]" id="new_title" placeholder="Type Here">
+              </li>
+              <li>
+                    <p>Choose an Existing Title:</p>
+                    <%@titles.each do |title|%>
+                          <input type="checkbox" name="figure[title_ids][]" value="<%=title.id%>" id="title_<%=title.id%>"><%=title.name%></input>
+                    <%end%>
+                    <br></br>
+            </li>
+        </ul>
+        <input type="submit" name="submit" value="Create New Figure">
+</form>
